@@ -1,0 +1,2159 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Re Dive｜社会人向け水泳チーム【東京】</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="社会人水泳チームサイト。チームの魅力、練習の流れ、環境・サポート、メンバーの声、エントリー方法をご紹介します。" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+    <style>
+      :root {
+        --color-main: #c8102e;   /* 差し色（コーエーテクモ風の赤系） */
+        --color-main-dark: #920c23;
+        --color-dark-bg: #05060b;
+        --color-gray-bg: #f5f5f7;
+        --color-text: #222;
+        --max-width: 1120px;
+        --header-height: 72px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html, body {
+        margin: 0;
+        padding: 0;
+        font-family: "Noto Sans JP", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        color: var(--color-text);
+        background: #fff;
+        scroll-behavior: smooth;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      /* ---------------- Header ---------------- */
+      .header {
+        position: fixed;
+        inset: 0 0 auto 0;
+        height: var(--header-height);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(5, 6, 11, 0.9);
+        backdrop-filter: blur(14px);
+        color: #fff;
+        z-index: 1000;
+      }
+
+      .header-inner {
+        max-width: var(--max-width);
+        width: 100%;
+        padding: 0 18px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .logo-block {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .logo-mark {
+        width: 32px;
+        height: 32px;
+        border-radius: 999px;
+        border: 2px solid #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        font-weight: 800;
+      }
+
+      .logo-text-main {
+        font-size: 13px;
+        font-weight: 800;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      .logo-text-sub {
+        font-size: 10px;
+        opacity: 0.6;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        font-size: 12px;
+      }
+
+      .nav a {
+        position: relative;
+        padding-bottom: 3px;
+      }
+      .nav a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0;
+        height: 2px;
+        background: var(--color-main);
+        transition: width 0.2s ease;
+      }
+      .nav a:hover::after {
+        width: 100%;
+      }
+
+      .nav-entry-btn {
+        padding: 7px 14px;
+        border-radius: 999px;
+        border: 1px solid rgba(255,255,255,0.7);
+        font-size: 11px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: rgba(0,0,0,0.3);
+      }
+
+      .nav-entry-btn span {
+        font-size: 16px;
+        transform: translateY(1px);
+      }
+
+      /* SP nav toggle */
+      .nav-toggle {
+        display: none;
+        width: 28px;
+        height: 20px;
+        flex-direction: column;
+        justify-content: space-between;
+        cursor: pointer;
+      }
+      .nav-toggle span {
+        display: block;
+        height: 2px;
+        border-radius: 999px;
+        background: #fff;
+        transition: transform 0.2s ease, opacity 0.2s ease;
+      }
+      .nav-open .nav-toggle span:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+      }
+      .nav-open .nav-toggle span:nth-child(2) {
+        opacity: 0;
+      }
+      .nav-open .nav-toggle span:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+      }
+
+      .nav-sp {
+        display: none;
+        position: fixed;
+        inset: var(--header-height) 0 auto 0;
+        background: rgba(5, 6, 11, 0.97);
+        color: #fff;
+        padding: 16px 24px 24px;
+        z-index: 900;
+      }
+      .nav-sp a {
+        display: block;
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        font-size: 13px;
+      }
+
+      /* ---------------- Hero ---------------- */
+      .hero {
+        position: relative;
+        padding-top: var(--header-height);
+        min-height: 450px;
+        /* hero1.jpg を背景にしつつ、上からうっすら暗いグラデーションをかける */
+        background:
+        linear-gradient(135deg, rgba(5, 6, 11, 0.15), rgba(5, 6, 11, 0.45)),
+        radial-gradient(circle at 0% 0%, rgba(48, 50, 63, 0.15) 0, rgba(5, 6, 11, 0.5) 50%),
+        url("images/hero1.png");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        color: #fff;
+        overflow: hidden;
+      }
+
+      .hero-inner {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        padding: 48px 18px 64px;
+        display: grid;
+        grid-template-columns: minmax(0, 2.4fr) minmax(0, 1.6fr);
+        gap: 40px;
+        align-items: center;
+      }
+
+      .hero-label {
+        font-size: 11px;
+        letter-spacing: 0.32em;
+        text-transform: uppercase;
+        opacity: 0.7;
+        margin-bottom: 16px;
+      }
+
+      .hero-main-en {
+        font-size: clamp(26px, 3.6vw, 34px);
+        font-weight: 900;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        line-height: 1.4;
+      }
+
+      .hero-main-ja {
+        font-size: 22px;
+        margin-top: 6px;
+        font-weight: 700;
+      }
+
+      .hero-tagline {
+        margin-top: 14px;
+        padding-left: 10px;
+        border-left: 2px solid var(--color-main);
+        font-size: 13px;
+        line-height: 1.9;
+        max-width: 480px;
+        opacity: 0.9;
+      }
+
+      .hero-subline {
+        margin-top: 22px;
+        font-size: 12px;
+        opacity: 0.82;
+      }
+
+      .hero-btn-group {
+        margin-top: 26px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .btn-primary {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        border-radius: 999px;
+        padding: 10px 20px;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        border: none;
+        cursor: pointer;
+        color: #fff;
+        background: linear-gradient(135deg, var(--color-main), var(--color-main-dark));
+        box-shadow: 0 12px 26px rgba(0,0,0,0.5);
+      }
+
+      .btn-primary span {
+        font-size: 16px;
+        transform: translateY(1px);
+      }
+
+      .btn-secondary {
+        font-size: 11px;
+        padding: 8px 14px;
+        border-radius: 999px;
+        border: 1px solid rgba(255,255,255,0.6);
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        opacity: 0.9;
+      }
+
+      .hero-hero-meta {
+        margin-top: 14px;
+        font-size: 11px;
+        opacity: 0.7;
+      }
+
+      .hero-right {
+        position: relative;
+        border-radius: 20px;
+        overflow: hidden;
+        background: #111;
+        min-height: 220px;
+      }
+
+      .hero-right-img-wrap {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+      }
+
+      .hero-right-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transform: scale(1.06);
+        transition: transform 4s ease-out;
+      }
+
+      .hero:hover .hero-right-img {
+        transform: scale(1.12);
+      }
+
+      .hero-right-mask {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at 0% 0%, rgba(0,0,0,0.1), rgba(0,0,0,0.8)),
+        linear-gradient(140deg, rgba(0,0,0,0.65), rgba(0,0,0,0.4));
+      }
+
+      .hero-right-inner {
+        position: relative;
+        z-index: 1;
+        padding: 18px 18px 16px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        color: #fff;
+        font-size: 12px;
+      }
+
+      .hero-right-head {
+        font-size: 11px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        opacity: 0.8;
+        margin-bottom: 6px;
+      }
+
+      .hero-right-title {
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1.6;
+      }
+
+      .hero-right-note {
+        margin-top: 14px;
+        font-size: 11px;
+        opacity: 0.8;
+      }
+
+      .hero-right-meta {
+        margin-top: auto;
+        display: flex;
+        justify-content: space-between;
+        font-size: 11px;
+        opacity: 0.8;
+      }
+
+      /* ---------------- Category cards (上部3メニュー) ---------------- */
+      .category-nav {
+        background: #fff;
+        border-bottom: 1px solid #e1e1e4;
+      }
+
+      .category-inner {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        padding: 16px 18px 22px;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .category-card {
+        border-radius: 14px;
+        padding: 14px 14px 12px;
+        border: 1px solid #e3e3ea;
+        background: linear-gradient(135deg, #ffffff, #fafafa);
+        cursor: pointer;
+        display: grid;
+        gap: 6px;
+        font-size: 12px;
+        transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+      }
+
+      .category-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+        border-color: var(--color-main);
+      }
+
+      .category-label {
+        font-size: 10px;
+        letter-spacing: 0.26em;
+        text-transform: uppercase;
+        color: var(--color-main);
+      }
+
+      .category-title {
+        font-size: 14px;
+        font-weight: 700;
+      }
+
+      .category-text {
+        font-size: 11px;
+        color: #555;
+      }
+
+      .category-link {
+        margin-top: 4px;
+        font-size: 11px;
+        text-align: right;
+        color: var(--color-main);
+      }
+
+      /* ---------------- Sections base ---------------- */
+      main section {
+        padding: 64px 18px 72px;
+      }
+
+      .section-inner {
+        max-width: var(--max-width);
+        margin: 0 auto;
+      }
+
+      .section-label {
+        font-size: 11px;
+        letter-spacing: 0.32em;
+        text-transform: uppercase;
+        color: var(--color-main-dark);
+        margin-bottom: 10px;
+      }
+
+      .section-title {
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+
+      .section-title-sub {
+        font-size: 12px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        opacity: 0.6;
+        margin-bottom: 24px;
+      }
+
+      .section-lead {
+        font-size: 14px;
+        line-height: 1.9;
+        max-width: 640px;
+        color: #444;
+        margin-bottom: 32px;
+      }
+
+      /* ---------------- CIRCLE PHOTO SECTION ---------------- */
+      .sec-circle {
+        background: var(--color-gray-bg);
+      }
+
+      .circle-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 26px;
+        align-items: flex-start;
+      }
+
+      .circle-card {
+        text-align: center;
+        font-size: 13px;
+      }
+
+      .circle-photo {
+        width: 180px;
+        aspect-ratio: 1 / 1;
+        border-radius: 50%;
+        overflow: hidden;
+        margin: 0 auto 12px;
+        position: relative;
+        box-shadow: 0 14px 30px rgba(0,0,0,0.22);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .circle-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transform: scale(1.03);
+        transition: transform 0.4s ease;
+      }
+
+      .circle-card:hover .circle-photo {
+        transform: translateY(-4px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.32);
+      }
+
+      .circle-card:hover .circle-photo img {
+        transform: scale(1.08);
+      }
+
+      .circle-tag {
+        font-size: 11px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--color-main);
+        margin-bottom: 4px;
+      }
+
+      .circle-title {
+        font-size: 14px;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+
+      .circle-text {
+        font-size: 12px;
+        color: #555;
+        line-height: 1.8;
+      }
+
+      /* ---------------- SECTION: team merit ---------------- */
+      .sec-merit {
+        background: #fff;
+      }
+
+      .merit-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
+        gap: 32px;
+        align-items: flex-start;
+      }
+
+      .merit-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 14px;
+      }
+
+      .merit-item {
+        display: grid;
+        grid-template-columns: 80px minmax(0, 1fr);
+        gap: 10px;
+        font-size: 13px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 10px;
+      }
+
+      .merit-item:last-child {
+        border-bottom: none;
+      }
+
+      .merit-label {
+        font-size: 11px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--color-main);
+        padding-top: 3px;
+      }
+
+      .merit-title {
+        font-weight: 600;
+        margin-bottom: 4px;
+      }
+
+      .merit-text {
+        color: #555;
+        line-height: 1.8;
+      }
+
+      .merit-side-card {
+        border-radius: 16px;
+        border: 1px solid #e3e3ea;
+        background: linear-gradient(135deg, #ffffff, #f7f7fb);
+        padding: 18px 18px 16px;
+        font-size: 12px;
+        box-shadow: 0 10px 24px rgba(0,0,0,0.06);
+      }
+
+      .merit-side-title {
+        font-size: 13px;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+
+      .merit-side-list {
+        margin: 0;
+        padding-left: 1.1em;
+        line-height: 1.8;
+      }
+
+
+
+      /* ---------------- SECTION: training flow ---------------- */
+      .sec-flow {
+        background: var(--color-gray-bg);
+      }
+
+      .flow-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.4fr);
+        gap: 32px;
+        align-items: flex-start;
+      }
+
+      .flow-timeline {
+        border-left: 1px solid #d7d7e3;
+        padding-left: 16px;
+        margin-top: 12px;
+      }
+
+      .flow-step-block {
+        position: relative;
+        padding: 10px 0 14px 6px;
+        font-size: 13px;
+      }
+
+      .flow-step-block::before {
+        content: "";
+        position: absolute;
+        left: -22px;
+        top: 16px;
+        width: 11px;
+        height: 11px;
+        border-radius: 999px;
+        border: 2px solid var(--color-main);
+        background: #fff;
+        box-shadow: 0 0 0 3px rgba(200, 16, 46, 0.18);
+      }
+
+      .flow-step-label {
+        font-size: 11px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--color-main);
+        margin-bottom: 2px;
+      }
+
+      .flow-step-title {
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 4px;
+      }
+
+      .flow-step-text {
+        font-size: 13px;
+        color: #555;
+        line-height: 1.8;
+      }
+
+      .flow-note {
+        font-size: 11px;
+        color: #777;
+        margin-top: 14px;
+      }
+
+      .flow-menu-card {
+        border-radius: 16px;
+        background: #fff;
+        padding: 18px 18px 14px;
+        font-size: 12px;
+        border: 1px solid #e3e3ea;
+        box-shadow: 0 10px 24px rgba(0,0,0,0.06);
+      }
+
+      .flow-menu-title {
+        font-size: 13px;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+
+      .flow-menu-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 11px;
+      }
+
+      .flow-menu-table th,
+      .flow-menu-table td {
+        padding: 6px 4px;
+        border-bottom: 1px solid #eee;
+      }
+
+      .flow-menu-table th {
+        text-align: left;
+        color: #777;
+        width: 32%;
+        font-weight: 500;
+      }
+
+      /* ---------------- SECTION: environment & support ---------------- */
+      .sec-env {
+        background: #fff;
+      }
+
+      .env-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.5fr);
+        gap: 28px;
+        align-items: flex-start;
+      }
+
+      .env-card {
+        border-radius: 16px;
+        border: 1px solid #e3e3ea;
+        padding: 18px 18px 14px;
+        font-size: 12px;
+        background: linear-gradient(135deg, #ffffff, #fafafa);
+      }
+
+      .env-card-title {
+        font-size: 13px;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+
+      .env-list {
+        margin: 0;
+        padding-left: 1.1em;
+        line-height: 1.8;
+      }
+
+      .env-note {
+        margin-top: 10px;
+        font-size: 11px;
+        color: #777;
+      }
+
+      .env-photo {
+        border-radius: 16px;
+        overflow: hidden;
+        background: #111;
+        min-height: 180px;
+        position: relative;
+      }
+
+      .env-photo-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .env-photo-mask {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(140deg, rgba(0,0,0,0.75), rgba(0,0,0,0.3));
+      }
+
+      .env-photo-inner {
+        position: absolute;
+        inset: 0;
+        color: #fff;
+        padding: 16px 18px;
+        font-size: 12px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .env-photo-label {
+        font-size: 11px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        opacity: 0.8;
+        margin-bottom: 4px;
+      }
+
+      .env-photo-title {
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1.6;
+      }
+
+      .env-photo-text {
+        margin-top: 8px;
+        font-size: 11px;
+        opacity: 0.8;
+      }
+
+      /* ---------------- SECTION: voices ---------------- */
+      .sec-voices {
+        background: var(--color-dark-bg);
+        color: #fff;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .sec-voices::before {
+        content: "";
+        position: absolute;
+        inset: -40%;
+        background:
+        radial-gradient(circle at 0% 0%, rgba(255,255,255,0.08), transparent 60%),
+        radial-gradient(circle at 100% 100%, rgba(200,16,46,0.3), transparent 60%);
+        opacity: 0.85;
+      }
+
+      .sec-voices-inner {
+        position: relative;
+        z-index: 1;
+        max-width: var(--max-width);
+        margin: 0 auto;
+      }
+
+      .section-lead--dark {
+        color: rgba(255,255,255,0.85);
+      }
+
+      .voices-grid {
+        margin-top: 26px;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .voice-card {
+        border-radius: 16px;
+        border: 1px solid rgba(255,255,255,0.1);
+        background: rgba(8,10,18,0.9);
+        padding: 16px 16px 18px;
+        font-size: 12px;
+        display: grid;
+        gap: 8px;
+        min-height: 150px;
+      }
+
+      .voice-meta {
+        font-size: 11px;
+        opacity: 0.7;
+      }
+
+      .voice-name {
+        font-size: 13px;
+        font-weight: 600;
+        margin-bottom: 4px;
+      }
+
+      .voice-text {
+        line-height: 1.9;
+        opacity: 0.9;
+      }
+
+      /* ---------------- SECTION: entry ---------------- */
+      .sec-entry {
+        background: #f5f5f7;
+      }
+
+      .entry-card {
+        max-width: 760px;
+        margin: 0 auto;
+        border-radius: 18px;
+        padding: 22px 20px 22px;
+        background: #fff;
+        border: 1px solid #e3a3a5;
+        box-shadow: 0 14px 34px rgba(0,0,0,0.08);
+        text-align: center;
+      }
+
+      .entry-copy {
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+
+      .entry-lead {
+        font-size: 14px;
+        line-height: 1.9;
+        margin-bottom: 22px;
+        color: #555;
+      }
+
+      .entry-note {
+        font-size: 11px;
+        color: #777;
+        margin-top: 10px;
+      }
+
+      /* ---------------- Footer ---------------- */
+      .footer {
+        background: #05060b;
+        color: #a3a6b8;
+        font-size: 11px;
+        padding: 18px 18px 22px;
+      }
+
+      .footer-inner {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+      }
+
+      .footer-nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .footer-nav a {
+        opacity: 0.78;
+      }
+
+
+      /* ---------------- Scroll Animation ---------------- */
+      .scroll-fade {
+        opacity: 0;
+        transform: translateY(26px);
+        transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+      }
+      .scroll-fade.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ---------------- Responsive ---------------- */
+      @media (max-width: 900px) {
+        .hero-inner {
+          grid-template-columns: minmax(0, 1fr);
+          gap: 26px;
+        }
+      .hero-right {
+        max-width: 440px;
+      }
+      .merit-grid,
+      .flow-grid,
+      .env-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .category-inner {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .voices-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .circle-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      }
+
+      @media (max-width: 720px) {
+        .nav {
+          display: none;
+        }
+      .nav-toggle {
+        display: flex;
+      }
+      .nav-sp {
+        display: none;
+      }
+
+      body.nav-open .nav-sp {
+        display: block;
+      }
+
+      main section {
+        padding: 56px 16px 64px;
+      }
+
+      .hero-inner {
+        padding: 40px 16px 52px;
+      }
+      }
+
+      @media (max-width: 520px) {
+        .hero-main-en {
+          font-size: 22px;
+        }
+      .hero-main-ja {
+        font-size: 18px;
+      }
+      .hero-tagline {
+        font-size: 12px;
+      }
+      .voices-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .circle-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      }
+
+      /* ===== CAREER TEXT REBALANCE ===== */
+      #coach {
+        background: #0f172a;   /* ネイビー */
+        color: #cbd5e1;        /* 本文ベース：少し暗め */
+      }
+
+      /* 小見出し（CAREERなど） */
+      #coach .section-label {
+        color: #94a3b8;
+        letter-spacing: 0.36em;
+      }
+
+      /* メインタイトル */
+      #coach .section-title {
+        color: #f8fafc;        /* ここだけ明るく */
+        font-weight: 700;
+      }
+
+      /* サブタイトル */
+      #coach .section-title-sub {
+        color: #9ca3af;
+      }
+
+      /* 説明文（いちばん重要） */
+      #coach .section-lead,
+      #coach .flow-step-text {
+        color: #cbd5e1;        /* 明るすぎない */
+        line-height: 1.9;
+      }
+
+      /* 経歴ステップのタイトル */
+      #coach .flow-step-title {
+        color: #e5e7eb;        /* 本文より少しだけ明るい */
+        font-weight: 600;
+      }
+
+      /* 右カード（CAREER用） */
+      #coach .flow-menu-card {
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,255,255,0.14);
+        color: #e5e7eb; /* ベース文字色 */
+      }
+
+      /* 右カード内の本文（← ここが一番大事） */
+      #coach .flow-menu-card p {
+        color:#e5e7eb;   /* 白ではなく、少し落とす */
+        line-height: 1.8;
+      }
+
+      /* 右カード内のタイトル（HEAD COACH） */
+      #coach .flow-menu-title {
+        color: #f9fafb;   /* タイトルだけ少し明るく */
+        letter-spacing: 0.08em;
+      }
+
+
+      /* === CAREER: 詳細の開閉（details/summary） === */
+      #coach .career-details {
+        margin-top: 10px;
+      }
+
+      #coach .career-details > summary {
+        list-style: none;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        border-radius: 999px;
+
+        /* ▼ここを修正：暗い背景でも読めるように */
+        color: #f8fafc;                            /* 文字を明るく */
+        background: rgba(255,255,255,0.10);        /* ボタン背景を少し明るめの半透明に */
+        border: 1px solid rgba(255,255,255,0.22);  /* 枠も明るく */
+
+        font-size: 12px;
+        font-weight: 700;                          /* 少し読みやすく */
+      }
+
+      #coach .career-details > summary:hover {
+        background: rgba(255,255,255,0.14);
+        border-color: rgba(255,255,255,0.30);
+      }
+
+      #coach .career-details > summary:focus-visible {
+        outline: 2px solid rgba(255,255,255,0.45);
+        outline-offset: 2px;
+      }
+
+      #coach .career-details > summary::-webkit-details-marker {
+        display: none;
+      }
+
+      #coach .career-details > summary::after {
+        content: "▾";
+        font-size: 12px;
+        opacity: 0.8;  /* 少し見やすく */
+      }
+
+      #coach .career-details[open] > summary::after {
+        content: "▴";
+      }
+
+      /* 開いたときに“その行から”下へ別パネルとして出す */
+      #coach .career-details-panel {
+        margin-top: 10px;
+        padding: 14px 14px 12px;
+        border-radius: 14px;
+        border: 1px solid rgba(0,0,0,0.10);
+        background: #ffffff;
+      }
+
+      #coach .career-details-title {
+        font-size: 12px;
+        font-weight: 700;
+        margin-bottom: 10px;
+        letter-spacing: 0.08em;
+      }
+
+      #coach .career-details-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 12px;
+      }
+
+      #coach .career-details-table th,
+      #coach .career-details-table td {
+        padding: 8px 6px;
+        border-bottom: 1px solid rgba(0,0,0,0.08);
+        vertical-align: top;
+      }
+
+      #coach .career-details-table th {
+        width: 34%;
+        text-align: left;
+        color: #333;
+        font-weight: 700;
+        white-space: nowrap;
+        vertical-align: middle;
+      }
+
+      #coach .career-details-table td {
+        color: #444;
+        line-height: 1.8;
+      }
+
+      /* === CAREER: 勝手に全選択される問題の対策 === */
+
+      /* 「詳細はこちら」ボタン自体は選択不可 */
+      #coach .career-details > summary {
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+      }
+
+      /* 詳細パネルは通常の選択挙動に戻す */
+      #coach .career-details-panel,
+      #coach .career-details-panel * {
+        user-select: text !important;
+        -webkit-user-select: text !important;
+        -moz-user-select: text !important;
+      }
+
+      /* table行クリック時に全選択される挙動を防ぐ（念のため） */
+      #coach .career-details-table tr,
+      #coach .career-details-table th,
+      #coach .career-details-table td {
+        user-select: text !important;
+      }
+
+      .instagram-icon {
+        width: 50px;
+        height: 50px;
+      }
+
+      /* ---------------- Instagram icon & ENTRY alignment overrides ---------------- */
+      .instagram-icon {
+        width: 44px;              /* 見た目サイズ */
+        height: 44px;
+        aspect-ratio: 1 / 1;      /* 画面幅で縦長化しない */
+        object-fit: contain;
+        display: block;
+        flex: 0 0 auto;
+      }
+
+      /* ヘッダー右側のInstagramリンク（クリック領域も安定） */
+      .nav-instagram {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 34px;             /* ナビと揃える */
+      }
+
+      /* ENTRYボタンの上下センター（GALLERY等と高さを揃える） */
+      .nav-entry-btn {
+        height: 34px;
+        padding: 0 14px;
+        line-height: 1;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .nav-entry-btn span {
+        font-size: 16px;
+        transform: none;
+        line-height: 1;
+      }
+
+      /* フッターのInstagram */
+      .footer-instagram {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      
+
+
+    
+      /* === Header right cluster (keeps desktop look: nav right-aligned) === */
+      .header-right {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 14px;
+      }
+
+      /* Mobile: show Instagram icon to the LEFT of hamburger while keeping logo visible */
+      @media (max-width: 720px) {
+        .header-right {
+          gap: 10px;
+        }
+
+        .nav-instagram {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        /* Ensure order inside the right cluster */
+        .nav-instagram { order: 1; }
+        .nav-toggle { order: 2; }
+        /* nav links are in nav-sp (toggled), so .nav stays hidden */
+      }
+
+    
+      /* === Team Logo Image === */
+      .logo-mark.logo-image {
+        width: 32px;
+        height: 32px;
+        padding: 0;
+        border-radius: 50%;
+        overflow: hidden;
+        border: none;
+        background: #fff;
+      }
+
+      .logo-mark.logo-image img {
+        width: 32px;
+        height: 32px;
+        object-fit: contain;
+        display: block;
+      }
+
+
+      /* ---------------- Hero Slideshow (background) ---------------- */
+      .hero-inner {
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero-bg-layer {
+        position: absolute;
+        inset: 0;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        opacity: 0;
+        transition: opacity 0.8s ease;
+        pointer-events: none;
+      }
+
+      .hero-bg-layer.is-active {
+        opacity: 1;
+      }
+
+      .hero-dots {
+        position: absolute;
+        left: 50%;
+        bottom: 18px;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 10px;
+        z-index: 2;
+        padding: 8px 10px;
+        border-radius: 999px;
+        background: rgba(0,0,0,0.18);
+        backdrop-filter: blur(6px);
+      }
+
+      .hero-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(255,255,255,0.75);
+        background: rgba(255,255,255,0.22);
+        cursor: pointer;
+        padding: 0;
+        appearance: none;
+        outline: none;
+      }
+
+      .hero-dot.is-active {
+        background: rgba(255,255,255,0.95);
+      }
+
+      .hero-dot:focus-visible {
+        outline: 2px solid rgba(255,255,255,0.85);
+        outline-offset: 3px;
+      }
+
+    </style>
+  </head>
+  <body>
+<!-- Header -->
+    <header class="header">
+      <div class="header-inner">
+        <div class="logo-block">
+          <div class="logo-mark logo-image"><img src="images/team_logo.png" alt="Re Dive Team Logo"></div>
+          <div>
+            <div class="logo-text-main">Re Dive</div>
+            <div class="logo-text-sub">Official home page</div>
+          </div>
+        </div>
+
+        <div class="header-right">
+        <nav class="nav" aria-label="main">
+          <a href="#circle">GALLERY</a>
+          <a href="#merit">TEAM</a>
+          <a href="#coach">COACH</a>
+          <a href="#flow">FLOW</a>
+          <a href="#env">ENVIRONMENT</a>
+          <a href="#voices">VOICES</a>
+          <a href="#entry" class="nav-entry-btn">ENTRY<span>→</span></a>
+        </nav>
+
+        <a href="https://www.instagram.com/redive_swim/" target="_blank" rel="noopener" aria-label="Instagram" class="nav-instagram"><img class="instagram-icon" src="images/instagram.png" alt="Instagram"></a>
+
+        <div class="nav-toggle" id="navToggle" aria-label="メニュー" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </div>
+        </div>
+</div>
+
+      <!-- SP Nav -->
+      <nav class="nav-sp" id="navSp" aria-label="sp-nav">
+        <a href="#circle">GALLERY</a>
+        <a href="#merit">TEAM</a>
+        <a href="#coach">COACH</a>
+        <a href="#flow">FLOW</a>
+        <a href="#env">ENVIRONMENT</a>
+        <a href="#voices">VOICES</a>
+        <a href="#entry">ENTRY</a>
+      </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero" id="top">
+      <h1 class="visually-hidden">社会人水泳チーム Re Dive</h1>
+      <!-- Hero background slideshow layers -->
+      <div class="hero-bg-layer is-active" id="heroBgA"></div>
+      <div class="hero-bg-layer" id="heroBgB"></div>
+      <!-- Dots navigation (auto-generated) -->
+      <div class="hero-dots" id="heroDots" aria-label="Hero slideshow navigation"></div>
+      <div class="hero-inner scroll-fade">
+        <div>
+          <div class="hero-label">RECRUIT</div>
+          <div class="hero-main-en">
+            CREATE YOUR NEXT<br>
+            OVER THE LIMIT.
+          </div>
+          <div class="hero-main-ja">限界の。その先の景色を見よう。</div>
+
+          <p class="hero-tagline">
+            本気で泳げる場所がここにあります。<br>
+            仕事と日常を大切にしながら、タイムにも妥協しない。<br>
+            「強くなりたい」本気スイマーを募集しています。<br>
+            小学生~大学生、社会人と幅広い選手を募集しております。
+          </p>
+
+          <div class="hero-subline">
+            新しい環境で挑戦したい学生の方。 <br>
+            大学生以来まったく泳いでいない方、マスターズでさらに上を目指したい方。<br>
+            レベル別のレーンで、それぞれの“今”からスタートできます。
+          </div>
+
+          <div class="hero-btn-group">
+            <a href="#entry" class="btn-primary">
+              EXPERIENCE ENTRY<span>→</span>
+            </a>
+            <a href="#circle" class="btn-secondary">
+              GALLERY
+            </a>
+          </div>
+
+          <div class="hero-hero-meta">
+            ※募集状況・レベル枠により、体験参加の日程調整にお時間をいただく場合があります。
+          </div>
+        </div>
+
+        <aside class="hero-right">
+          <div class="hero-right-img-wrap">
+            <!-- Hero右側カード用写真（Unsplash） -->
+            <img
+            class="hero-right-img"
+            src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=1200&q=80"
+            alt="水泳練習の様子"
+            >
+          </div>
+          <div class="hero-right-mask"></div>
+          <div class="hero-right-inner">
+            <div>
+              <div class="hero-right-head">TOP MESSAGE</div>
+              <div class="hero-right-title">
+                小学生から社会人まで。<br>
+                「昨日の自分」を超えたいすべての人へ。
+              </div>
+              <div class="hero-right-note">
+                監督 / ヘッドコーチより<br>
+                「仕事も家庭も学業も。両立を大事にしながら、それでも成長したいあなたをお待ちしております。
+              </div>
+            </div>
+            <div class="hero-right-meta">
+              <span>週2〜4回・夜中心 / 都内プール</span>
+              <span>メンバー数：約30名</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- 上部カテゴリー3カード -->
+    <div class="category-nav">
+      <div class="category-inner">
+        <div class="category-card scroll-fade" onclick="location.href='#circle'">
+          <div class="category-label">GALLERY</div>
+          <div class="category-title">写真から雰囲気を知る</div>
+          <div class="category-text">
+            私たちの大切な3つの理念。この理念をもとに日々切磋琢磨しています。
+          </div>
+          <div class="category-link">PHOTO GALLERY →</div>
+        </div>
+
+        <div class="category-card scroll-fade" onclick="location.href='#merit'">
+          <div class="category-label">FEATURE</div>
+          <div class="category-title">チームの特徴から知る</div>
+          <div class="category-text">
+            「どんな雰囲気？」「どんな人がいる？」──スイマーが集まる理由をご紹介します。
+          </div>
+          <div class="category-link">TEAM MERIT →</div>
+        </div>
+
+        <div class="category-card scroll-fade" onclick="location.href='#flow'">
+          <div class="category-label">FLOW</div>
+          <div class="category-title">練習内容と参加の流れ</div>
+          <div class="category-text">
+            1回の練習の流れや、体験参加〜入会までのステップを、わかりやすくまとめました。
+          </div>
+          <div class="category-link">TRAINING FLOW →</div>
+        </div>
+      </div>
+    </div>
+
+    <main>
+      <!-- CIRCLE PHOTO GALLERY -->
+      <section class="sec-circle" id="circle">
+        <div class="section-inner scroll-fade">
+          <div class="section-label">PHOTO GALLERY</div>
+          <h2 class="section-title">写真で見える、チームの3つの顔。</h2>
+          <div class="section-title-sub">TRAINING / CHALLENGE / COMMUNITY</div>
+          <p class="section-lead">
+            Re Diveを支える3つの理念を紹介します。私たちはこの理念をもとに日々活躍をしております。<br>
+            私たちの理念を通じて、Re Diveというチームを知っていただきたいです。
+          </p>
+
+          <div class="circle-grid">
+            <article class="circle-card">
+              <div class="circle-photo">
+                <img
+                src="images/gallery01.png"
+                alt="水泳練習の様子"
+                >
+              </div>
+              <div class="circle-tag">TRAINING</div>
+              <div class="circle-title">淡々と積み上げる練習時間。</div>
+              <div class="circle-text">
+                社会人の限られた時間の中で、1本1本のスイムに集中する。
+                タイムもフォームも、少しずつ積み上げていきます。
+              </div>
+            </article>
+
+            <article class="circle-card">
+              <div class="circle-photo">
+                <img
+                src="images/gallery02.png"
+                alt="スタート台から飛び込む様子"
+                >
+              </div>
+              <div class="circle-tag">CHALLENGE</div>
+              <div class="circle-title">スタート台の上の、高揚感。</div>
+              <div class="circle-text">
+                マスターズ大会や記録会など、目標に合わせて出場を選べます。
+                大人になってからの「本気のレース」は、やみつきになります。
+              </div>
+            </article>
+
+            <article class="circle-card">
+              <div class="circle-photo">
+                <img
+                src="images/gallery03.png"
+                alt="チームメンバーの集合写真イメージ"
+                >
+              </div>
+              <div class="circle-tag">COMMUNITY</div>
+              <div class="circle-title">年齢も職業もバラバラな仲間。</div>
+              <div class="circle-text">
+                IT、医療、教育、営業…バックグラウンドはさまざま。
+                「泳ぐことが好き」という共通点だけで、自然と距離が縮まります。
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- TEAM MERIT -->
+      <section class="sec-merit" id="merit">
+        <div class="section-inner scroll-fade">
+          <div class="section-label">TEAM MERIT</div>
+          <h2 class="section-title">幅広いスイマーが集まる理由。</h2>
+          <div class="section-title-sub">WHAT MAKES US DIFFERENT</div>
+          <p class="section-lead">
+            「ただ泳ぐサークル」ではなく、「強くなるチーム」としてのこだわりがあります。<br>
+            レベルもライフスタイルも違うメンバーが、同じレーンに向かうための仕組みを整えています。
+          </p>
+
+          <div class="merit-grid">
+            <ul class="merit-list">
+              <li class="merit-item">
+                <div class="merit-label">MERIT 01</div>
+                <div>
+                  <div class="merit-title">レベル別レーンで、誰も取り残さない。</div>
+                  <div class="merit-text">
+                    50m Fr のタイム帯ごとにレーンを分けて練習します。
+                    「速すぎてついていけない」「遅くて迷惑をかけてしまう」といった不安を減らし、
+                    自分のペースで追い込めるようにしています。
+                  </div>
+                </div>
+              </li>
+              <li class="merit-item">
+                <div class="merit-label">MERIT 02</div>
+                <div>
+                  <div class="merit-title">120分で完結する、濃いメニュー構成。</div>
+                  <div class="merit-text">
+                    社会人の時間制約を前提に、ウォーミングアップ〜メインセット〜スイムダウンまでを約120分に凝縮。
+                    「今日はこのポイントを鍛える」と明確なテーマを設けたメニューで効率的に強化します。
+                    コーチがあなたに合わせて徹底個別対応。あなたのレベルと目標に合わせて、適切な強度や休憩でメニューをアレンジ。
+                  </div>
+                </div>
+              </li>
+              <li class="merit-item">
+                <div class="merit-label">MERIT 03</div>
+                <div>
+                  <div class="merit-title">大会出場は「目標」として選べる。</div>
+                  <div class="merit-text">
+                    年に数回、マスターズ大会への出場を予定していますが、参加はあくまで任意。
+                    まずは練習だけに集中したい方もいれば、リレーで表彰台を狙うメンバーも。
+                    それぞれのモチベーションを尊重します。
+                  </div>
+                </div>
+              </li>
+              <li class="merit-item">
+                <div class="merit-label">MERIT 04</div>
+                <div>
+                  <div class="merit-title">「仕事優先」が前提のチーム運営。</div>
+                  <div class="merit-text">
+                    繁忙期やシフトなどで参加できない期間があっても問題ありません。
+                    出欠はオンライン上で簡単に管理し、無理に出席を求めることはありません。
+                    長く続けられることを一番大事にしています。
+                  </div>
+                </div>
+              </li>
+            </ul>
+
+            <aside class="merit-side-card">
+              <div class="merit-side-title">こんな方を歓迎しています</div>
+              <ul class="merit-side-list">
+                <li>部活動やクラブの選択肢として新たな環境でチャレンジしたい学生の方</li>
+                <li>学生時代は部活で泳いでいたが、数年〜十数年のブランクがある社会人の方</li>
+                <li>ベスト更新・表彰台を本気で目指したい方</li>
+                <li>「一人では追い込めない」けれど、チームがあれば頑張れると感じる方</li>
+              </ul>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- CAREER OF HEAD COACH -->
+      <section class="sec-flow" id="coach">
+        <div class="section-inner scroll-fade">
+          <div class="section-label">COACH</div>
+          <h2 class="section-title">代表者挨拶</h2>
+          <div class="section-title-sub">CAREER / PHILOSOPHY</div>
+
+          <div class="flow-grid">
+            <!-- 左：経歴 -->
+            <div>
+
+
+              <div class="flow-timeline">
+
+                <!-- ① 要素1 -->
+                <div class="flow-step-block">
+                  <div class="flow-step-label">2023年～現在</div>
+                  <div class="flow-step-title">Re Dive の運営・指導</div>
+                  <div class="flow-step-text">
+                    完全独立を果たし、コーチングとチーム運営を両立。<br>
+                    社会人を中心に、限られた時間でも継続的に成長できる練習環境を整備する。<br>
+                    個々の目的に応じた柔軟な参加形態を採用し、競技力向上と長期的な継続を支えている。
+                  </div>
+                </div>
+
+                <details class="career-details">
+                  <summary>詳細はこちら</summary>
+                  <div class="career-details-panel">
+                    <div class="career-details-title">詳細な経歴</div>
+
+                    <table class="career-details-table">
+                      <tr>
+                        <th>2004年3月</th>
+                        <td>東京YMCA社会体育・保育専門学校 卒業<br>
+                          (実技・指導実習を通じて指導者としての基礎を学ぶ)</td>
+                      </tr>
+                      <tr>
+                        <th>2004年～2010年</th>
+                        <td>草加スイミングスクール<br>
+                          (幼少コース～選手育成・マスターズ、ジム兼任 など)</td>
+                      </tr>
+                      <tr>
+                        <th>2010年～2016年</th>
+                        <td>（株）東京ドームスポーツ<br>
+                          (選手育成・レッスン、ジム兼任 など)</td>
+                      </tr>
+                      <tr>
+                        <th>2017年～2023年</th>
+                        <td>水泳チームKPS <br>
+                          (半独立でコーチ業と運営を両立)</td>
+                      </tr>
+                      <tr>
+                        <th>2020年～現在</th>
+                        <td>戸田市スポーツセンター <br>
+                          (市営で専属コーチ。指導の領域をさらに広げる。)</td>
+                      </tr>
+                      <tr>
+                        <th>2023年～現在</th>
+                        <td>Re Dive 運営開始<br>
+                          (完全独立・選手強化・参加形態の柔軟化)</td>
+                      </tr>
+                    </table>
+                  </div>
+                </details>
+
+
+                <!-- ② 要素2 -->
+                <div class="flow-step-block">
+                  <div class="flow-step-label">指導領域</div>
+                  <div class="flow-step-title">多世代・多目的の水泳指導</div>
+                  <div class="flow-step-text">
+                    小学生から大学生、社会人、マスターズまで幅広い年代を指導。<br>
+                    初心者の基礎習得から、競技志向のフォーム改善・強化練習まで対応する。<br>
+                    年齢や経験に左右されない、個別性を重視した指導を行っている。
+                  </div>
+                </div>
+
+                <!-- ③ 要素3 -->
+                <div class="flow-step-block">
+                  <div class="flow-step-label">指導方針</div>
+                  <div class="flow-step-title">「続けることで伸びる」設計</div>
+                  <div class="flow-step-text">
+                    短期的な結果だけを追うのではなく、無理なく継続できる練習設計を重視。<br>
+                    日々の積み重ねと納得感のある努力が、確かな成長につながると考えている。<br>
+                    長く泳ぎ続けられる強さを育てることを、指導の軸としている。
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- 右：顔写真 -->
+            <aside class="flow-menu-card">
+              <div class="flow-menu-title">田中 健三 / HEAD COACH</div>
+              <div style="border-radius:14px; overflow:hidden; margin-bottom:10px;">
+                <img
+                src="images/head_coach.png"
+                alt="ヘッドコーチ写真"
+                style="width:50%; height:auto; display:block; margin:0 auto;"
+                >
+              </div>
+
+              <p style="margin:0; font-size:12px; line-height:1.7;">
+                1986年、埼玉県草加市生まれ。<br>
+                6歳より水泳を始め、学生時代には競技に打ち込みながら大きな成長を経験する。<br>
+                現在は、水泳コーチとしての指導とチーム運営を両立し、<br>
+                年齢や立場に関係なく「続けることで確実に伸びる環境づくり」を大切にしている。<br>
+                <br>
+                速さだけを追い求めるのではなく、<br>
+                日々の積み重ねと、納得感のある努力を重ねること。<br>
+                それこそが、長く泳ぎ続けるための強さだと考えている。<br>
+              </p>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- TRAINING FLOW -->
+      <section class="sec-flow" id="flow">
+        <div class="section-inner scroll-fade">
+          <div class="section-label">TRAINING FLOW</div>
+          <h2 class="section-title">1回の練習と、参加までのステップ。</h2>
+          <div class="section-title-sub">PRACTICE & ENTRY FLOW</div>
+          <p class="section-lead">
+            まずは体験参加で、レベル感や雰囲気を確かめていただきます。<br>
+            実際の練習の流れや、体験までのステップを事前にイメージしておけるよう、シンプルにまとめました。
+          </p>
+
+          <div class="flow-grid">
+            <div>
+              <div class="flow-timeline">
+                <div class="flow-step-block">
+                  <div class="flow-step-label">STEP 01</div>
+                  <div class="flow-step-title">エントリーフォームからお問い合わせ</div>
+                  <div class="flow-step-text">
+                    このページ下部の「ENTRY」ボタンから、体験希望日・現在の泳力などをご入力ください。
+                    原則として 2〜3 営業日以内に、担当者からメールでご連絡いたします。
+                  </div>
+                </div>
+                <div class="flow-step-block">
+                  <div class="flow-step-label">STEP 02</div>
+                  <div class="flow-step-title">参加可能な練習日のご案内</div>
+                  <div class="flow-step-text">
+                    最新の練習スケジュールの中から、参加しやすい候補日をご提案します。
+                    ご希望に合わせて日程を調整し、集合場所・持ち物などの詳細をご案内します。
+                  </div>
+                </div>
+                <div class="flow-step-block">
+                  <div class="flow-step-label">STEP 03</div>
+                  <div class="flow-step-title">体験参加（1〜2回まで）</div>
+                  <div class="flow-step-text">
+                    実際の練習メニューに混ざって泳いでいただきます。
+                    当日は担当者がレーン割やサークルタイムの見方を丁寧にサポートしますので、久しぶりの方もご安心ください。
+                  </div>
+                </div>
+                <div class="flow-step-block">
+                  <div class="flow-step-label">STEP 04</div>
+                  <div class="flow-step-title">入会のご検討・正式エントリー</div>
+                  <div class="flow-step-text">
+                    「ここで続けたい」と思っていただけた場合、入会手続きに進みます。
+                    会費の詳細やルールは、事前に資料としてお渡ししますので、ご納得いただいた上でご判断ください。
+                  </div>
+                </div>
+              </div>
+
+              <div class="flow-note">
+                ※募集枠・レーン数の都合により、タイミングによっては体験日程をお待ちいただく場合があります。
+              </div>
+            </div>
+
+            <aside class="flow-menu-card">
+              <div class="flow-menu-title">練習メニュー（120分）の一例</div>
+              <table class="flow-menu-table">
+                <tr>
+                  <th>19:00〜19:10</th>
+                  <td>アップ（SKPSなど / 各自のペースで）</td>
+                </tr>
+                <tr>
+                  <th>19:10〜19:30</th>
+                  <td>ドリル・フォーム確認（ストローク数・キック強度など）</td>
+                </tr>
+                <tr>
+                  <th>19:30〜20:10</th>
+                  <td>ベース練習（KICK / PULL / SWIM のバランス重視）</td>
+                </tr>
+                <tr>
+                  <th>20:05〜20:10</th>
+                  <td>レスト/ 個別でのフォーム確認</td>
+                </tr>
+                <tr>
+                  <th>20:10〜20:50</th>
+                  <td>メイン練習 (練習の中核。シーズンや調子に合わせて変化)</td>
+                </tr>
+                <tr>
+                  <th>20:50〜21:00</th>
+                  <td>ダウン</td>
+                </tr>
+              </table>
+              <p style="margin-top: 10px; font-size: 11px; color:#777;">
+                ※メニューはレベルによってアレンジされます。<br>
+                ※初回体験時は、負荷を抑えた内容での参加も可能です。
+              </p>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- ENVIRONMENT & SUPPORT -->
+      <section class="sec-env" id="env">
+        <div class="section-inner scroll-fade">
+          <div class="section-label">ENVIRONMENT & SUPPORT</div>
+          <h2 class="section-title">続けやすさのための、環境とサポート。</h2>
+          <div class="section-title-sub">PRACTICE FIELD / COMMUNICATION</div>
+          <p class="section-lead">
+            「仕事帰りに通いやすいか」「生活リズムに合うか」。<br>
+            練習内容だけでなく、アクセスやコミュニケーションも含めて、続けやすい環境づくりを心がけています。
+          </p>
+
+          <div class="env-grid">
+            <div>
+              <article class="env-card">
+                <div class="env-card-title">練習場所・時間帯</div>
+                <ul class="env-list">
+                  <li>都内の公共プール（50m / 25m）を中心に利用</li>
+                  <li>平日夜（17:00〜19:00 / 19:00～21:00）, 週末夕方などの時間帯</li>
+                  <li>駅から徒歩圏内の施設を優先的に選定</li>
+                </ul>
+                <div class="env-note">
+                  ※具体的な施設名・スケジュールについては下記フォームよりご連絡ください。
+                </div>
+              </article>
+
+              <article class="env-card" style="margin-top:14px;">
+                <div class="env-card-title">コミュニケーション・情報共有</div>
+                <ul class="env-list">
+                  <li>出欠管理・連絡はオンラインツール（LINE / チャットアプリ等）で運用</li>
+                  <li>練習メニューは事前に閲覧可能</li>
+                  <li>大会情報・打ち上げなども同じチャネルで一括共有</li>
+                </ul>
+                <div class="env-note">
+                  通知をミュートしながらも、必要な情報だけキャッチできるよう運用を工夫しています。
+                </div>
+              </article>
+            </div>
+
+            <div>
+              <div class="env-photo">
+                <!-- 環境写真：Unsplash -->
+                <img
+                class="env-photo-img"
+                src="images/environment.png"
+                alt="屋内プールのイメージ"
+                >
+                <div class="env-photo-mask"></div>
+                <div class="env-photo-inner">
+                  <div>
+                    <div class="env-photo-label">PRACTICE FIELD</div>
+                    <div class="env-photo-title">
+                      夜の静かなプールで、<br>
+                      1日をリセットする時間。
+                    </div>
+                    <div class="env-photo-text">
+                      仕事で疲れた頭をいったんリセットして、水の中だけに集中する120分。
+                      終わったあとは、身体はヘトヘトでも、不思議と気持ちは軽くなっています。
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <article class="env-card" style="margin-top:14px;">
+                <div class="env-card-title">サポート・フォロー</div>
+                <ul class="env-list">
+                  <li>フォーム撮影・簡易フィードバック（希望者）</li>
+                  <li>練習メニューの意図を、事前または事後に共有</li>
+                  <li>ブランクが長い方には、段階的に負荷を調整</li>
+                </ul>
+                <div class="env-note">
+                  専門的なコーチングというより、「選手同士で支え合う」スタンスを大切にしています。
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VOICES -->
+      <section class="sec-voices" id="voices">
+        <div class="sec-voices-inner">
+          <div class="section-label">MEMBER'S VOICE</div>
+          <h2 class="section-title">メンバーが感じている、このチームのリアル。</h2>
+          <div class="section-title-sub">INTERVIEW / COMMENT</div>
+          <p class="section-lead section-lead--dark">
+            少人数だからこそ、一人ひとりの背景も目標も違います。<br>
+            実際に参加しているメンバーの声を、いくつかご紹介します。
+          </p>
+
+          <div class="voices-grid">
+            <article class="voice-card">
+              <div class="voice-meta">IT企業 / 20代後半・男性</div>
+              <div class="voice-name">「もう一度、試合前のドキドキを味わえた」</div>
+              <div class="voice-text">
+                社会人になってからは運動不足でしたが、久しぶりに大会に出て、
+                学生の頃と同じような緊張感を味わえました。ベスト更新まではあと少しなので、次の大会が楽しみです。
+              </div>
+            </article>
+
+            <article class="voice-card">
+              <div class="voice-meta">医療職 / 30代前半・女性</div>
+              <div class="voice-name">「忙しいからこそ、ここでだけは自分の時間」</div>
+              <div class="voice-text">
+                シフト制で生活が不規則ですが、「行ける時だけでも大丈夫」という雰囲気のおかげで続けられています。
+                練習後はほどよい疲れでぐっすり眠れるようになりました。
+              </div>
+            </article>
+
+            <article class="voice-card">
+              <div class="voice-meta">営業職 / 30代後半・男性</div>
+              <div class="voice-name">「年齢を言い訳にしなくていい場所」</div>
+              <div class="voice-text">
+                最初は「もう若くないし…」と思っていましたが、年齢も職業もバラバラなメンバーが、
+                お互いのベストを素直に喜び合える空気があります。ここでは、年齢を言い訳にしなくていいと感じました。
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ENTRY -->
+      <section class="sec-entry" id="entry">
+        <div class="section-inner scroll-fade">
+          <div class="section-label">ENTRY</div>
+          <h2 class="section-title">限界の。その先の景色を見よう。</h2>
+          <div class="section-title-sub">EXPERIENCE ENTRY</div>
+
+          <div class="entry-card">
+            <div class="entry-copy">「このチームで泳ぎたいかどうか」は、水の中で決めてください。</div>
+            <p class="entry-lead">
+              画面の情報だけでは、レベル感も雰囲気も、きっと伝わりきりません。<br>
+              だからこそ、最初は体験参加をおすすめしています。<br>
+              実際に一緒に泳いでみて、「ここで続けたい」と思っていただけたら、とても嬉しいです。
+            </p>
+
+            <!-- ★ここを実際のGoogleフォーム等のURLに差し替えてください -->
+            <a href="https://example.com/your-google-form" class="btn-primary" target="_blank" rel="noopener">
+              EXPERIENCE ENTRY FORM<span>→</span>
+            </a>
+
+            <div class="entry-note">
+              ※募集状況により、ご希望日に体験参加いただけない場合もございます。あらかじめご了承ください。
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-inner">
+        <div>© Re Dive Official home page</div>
+        <div class="footer-nav">
+          <a href="#top">TOP</a>
+          <a href="#circle">GALLERY</a>
+          <a href="#merit">TEAM</a>
+          <a href="#coach">COACH</a>
+          <a href="#flow">FLOW</a>
+          <a href="#entry">ENTRY</a>
+        </div>
+      
+        <div class="footer-instagram" style="margin-top: 14px;">
+          <a href="https://www.instagram.com/redive_swim/" target="_blank" rel="noopener" aria-label="Instagram">
+            <img src="images/instagram.png" alt="Instagram" class="instagram-icon">
+          </a>
+        </div>
+</div>
+    </footer>
+
+    <script>
+      // SPナビ
+      const navToggle = document.getElementById('navToggle');
+      const navSp = document.getElementById('navSp');
+
+      navToggle.addEventListener('click', () => {
+        const isOpen = document.body.classList.toggle('nav-open');
+        navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+
+      navSp.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+          document.body.classList.remove('nav-open');
+          navToggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+      // スクロールに合わせたフェードイン
+      const scrollEls = document.querySelectorAll('.scroll-fade');
+      const scrollObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            scrollObserver.unobserve(entry.target);
+          }
+      });
+      }, {
+      threshold: 0.2
+      });
+
+      scrollEls.forEach((el) => scrollObserver.observe(el));
+
+      // Header hide/show (mobile)
+      const headerHideBtn = document.getElementById('headerHideBtn');
+      const headerShowBtn = document.getElementById('headerShowBtn');
+
+      const hideHeader = () => {
+        document.body.classList.add('header-hidden');
+        document.body.classList.remove('nav-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      };
+
+      const showHeader = () => {
+        document.body.classList.remove('header-hidden');
+      };
+
+      if (headerHideBtn) {
+        headerHideBtn.addEventListener('click', hideHeader);
+      }
+      if (headerShowBtn) {
+        headerShowBtn.addEventListener('click', showHeader);
+      }
+
+      // SP → PC で hidden のままにならないように
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 720) {
+          document.body.classList.remove('header-hidden');
+        }
+      });
+
+
+      // Hero background slideshow (5s per image + dot navigation)
+      (async function () {
+        const bgA = document.getElementById('heroBgA');
+        const bgB = document.getElementById('heroBgB');
+        const dotsWrap = document.getElementById('heroDots');
+        if (!bgA || !bgB || !dotsWrap) return;
+
+        // ===== 自動検出：images/hero1.png, hero2.png, hero3.png ... を「存在する分だけ」読み込む =====
+        // ※ディレクトリ一覧は静的HTMLでは取得できないため、連番を順に「読み込みテスト」して判定します。
+        // 　上限(MAX_SCAN)は十分大きめにしてあります（必要なら増やせます）。
+        const MAX_SCAN = 30;
+        const basePath = 'images/';
+        const makeUrl = (i) => `${basePath}hero${i}.png`;
+
+        const probeImage = (url) => new Promise((resolve) => {
+          const img = new Image();
+          img.onload = () => resolve(true);
+          img.onerror = () => resolve(false);
+          img.src = url + (url.includes('?') ? '&' : '?') + 'v=' + Date.now(); // cache-bust（ローカル更新反映用）
+        });
+
+        // まず hero1 を暫定で表示（検出が終わるまでの白抜け防止）
+        const buildBg = (imgUrl) => {
+          // 既存.hero と同じ“暗い重ね”を維持
+          return [
+            'linear-gradient(135deg, rgba(5, 6, 11, 0.15), rgba(5, 6, 11, 0.45))',
+            'radial-gradient(circle at 0% 0%, rgba(48, 50, 63, 0.15) 0, rgba(5, 6, 11, 0.5) 50%)',
+            `url("${imgUrl}")`
+          ].join(', ');
+        };
+
+        bgA.style.backgroundImage = buildBg('images/hero1.png');
+        bgB.style.backgroundImage = buildBg('images/hero1.png');
+
+        // 連番をスキャンして、存在する画像だけ配列化
+        const detected = [];
+        for (let i = 1; i <= MAX_SCAN; i++) {
+          const url = makeUrl(i);
+          // hero1 が無いケースもあり得るので、1枚も見つからなければ最後にフォールバックする
+          // ここでは「存在判定に成功したものだけ」追加
+          // eslint-disable-next-line no-await-in-loop
+          const ok = await probeImage(url);
+          if (ok) detected.push(url);
+        }
+
+        const heroImages = detected.length ? detected : ['images/hero1.png'];
+
+        // 初期背景をセット（1枚目）
+        bgA.style.backgroundImage = buildBg(heroImages[0]);
+        bgB.style.backgroundImage = buildBg(heroImages[1] || heroImages[0]);
+
+        // dots（画像枚数に応じて自動生成）
+        dotsWrap.innerHTML = '';
+        const dots = heroImages.map((_, i) => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'hero-dot' + (i === 0 ? ' is-active' : '');
+          btn.setAttribute('aria-label', `Slide ${i + 1}`);
+          btn.addEventListener('click', () => goTo(i, true));
+          dotsWrap.appendChild(btn);
+          return btn;
+        });
+
+        let index = 0;
+        let useA = true; // active layer
+        let timer = null;
+
+        const setActiveDot = (i) => {
+          dots.forEach((d, di) => d.classList.toggle('is-active', di === i));
+        };
+
+        const swapTo = (nextIndex) => {
+          const nextUrl = heroImages[nextIndex] || heroImages[0] || 'images/hero1.png';
+
+          const active = useA ? bgA : bgB;
+          const idle = useA ? bgB : bgA;
+
+          idle.style.backgroundImage = buildBg(nextUrl);
+          idle.classList.add('is-active');
+          active.classList.remove('is-active');
+
+          useA = !useA;
+          index = nextIndex;
+          setActiveDot(index);
+        };
+
+        const next = () => swapTo((index + 1) % heroImages.length);
+
+        const start = () => {
+          stop();
+          if (heroImages.length <= 1) return;
+          timer = setInterval(next, 5000); // 1枚あたり5秒
+        };
+
+        const stop = () => {
+          if (timer) {
+            clearInterval(timer);
+            timer = null;
+          }
+        };
+
+        const goTo = (i, restart) => {
+          if (i === index) return;
+          swapTo(i);
+          if (restart) start();
+        };
+
+        // マウスオーバーで止めたい場合は解除（今回は止めない）
+        start();
+      })();
+
+    </script>
+  </body>
+</html>

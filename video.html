@@ -1484,53 +1484,64 @@
     const PLAYLIST_ID = "PL66jSlgB0ywUX6ovlUw4J07o0oJyR196g";
     const statusEl = document.getElementById('videoListStatus');
     const grid = document.getElementById('videoGrid');
-
     if (!statusEl || !grid) return;
 
-    // NOTE: Direct fetch from youtube.com is often blocked by CORS on static sites.
-    // We use a public, read-only proxy to fetch the playlist RSS safely.
-    const rssDirect = `https://www.youtube.com/feeds/videos.xml?playlist_id=${encodeURIComponent(PLAYLIST_ID)}`;
-    const rssViaProxy = `https://r.jina.ai/http://www.youtube.com/feeds/videos.xml?playlist_id=${encodeURIComponent(PLAYLIST_ID)}`;
+    // GitHub Pages often blocks direct fetch to youtube.com by CORS.
+    // Use a "raw" CORS proxy first, then fall back.
+    const rss = `https://www.youtube.com/feeds/videos.xml?playlist_id=${encodeURIComponent(PLAYLIST_ID)}`;
+    const urls = [
+      `https://api.allorigins.win/raw?url=${encodeURIComponent(rss)}`,
+      `https://r.jina.ai/${rss}`,
+      rss
+    ];
 
-    const fetchText = async (url) => {
-      const res = await fetch(url, { method: 'GET' });
-      if (!res.ok) throw new Error(`Fetch failed: ${res.status}`);
-      return await res.text();
+    const fetchText = async () => {
+      let lastErr = null;
+      for (const url of urls) {
+        try {
+          const res = await fetch(url, { method: 'GET' });
+          if (!res.ok) throw new Error(`Fetch failed: ${res.status}`);
+          let text = await res.text();
+          // If proxy adds preface text, try to trim to XML start
+          const xmlStart = text.indexOf('<?xml');
+          if (xmlStart !== -1) text = text.slice(xmlStart);
+          return text;
+        } catch (e) {
+          lastErr = e;
+        }
+      }
+      throw lastErr || new Error('Fetch failed');
     };
+
+    const decodeXml = (s) => s
+      .replace(/&amp;/g, '&')
+      .replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>')
+      .replace(/&quot;/g, '"')
+      .replace(/&#39;/g, "'");
 
     try {
       statusEl.textContent = 'Loading videos…';
 
-      // Try proxy first (best for GitHub Pages); fallback to direct
-      let xmlText;
-      try {
-        xmlText = await fetchText(rssViaProxy);
-      } catch (e) {
-        xmlText = await fetchText(rssDirect);
-      }
+      const xmlText = await fetchText();
 
-      // Proxy may wrap content; try to locate the XML root
-      const xmlStart = xmlText.indexOf('<?xml');
-      if (xmlStart !== -1) xmlText = xmlText.slice(xmlStart);
-
-      const xml = new DOMParser().parseFromString(xmlText, 'text/xml');
-      const entries = Array.from(xml.getElementsByTagName('entry'));
-
-      if (!entries.length) {
+      // Robust parsing via regex (avoids DOMParser namespace quirks + proxy formatting)
+      const entryBlocks = xmlText.match(/<entry>[\s\S]*?<\/entry>/g) || [];
+      if (!entryBlocks.length) {
         statusEl.textContent = 'No videos found in this playlist yet.';
         return;
       }
 
-      // Clear existing grid
       grid.innerHTML = '';
+      let count = 0;
 
-      entries.forEach((entry) => {
-        const titleEl = entry.getElementsByTagName('title')[0];
-        const vidEl = entry.getElementsByTagName('yt:videoId')[0];
+      for (const block of entryBlocks) {
+        const vid = (block.match(/<yt:videoId>([^<]+)<\/yt:videoId>/) || [])[1];
+        // entry title (first <title> inside entry)
+        const rawTitle = (block.match(/<title>([\s\S]*?)<\/title>/) || [])[1];
+        if (!vid) continue;
 
-        const title = titleEl ? titleEl.textContent : 'Video';
-        const videoId = vidEl ? vidEl.textContent : null;
-        if (!videoId) return;
+        const title = decodeXml((rawTitle || 'Video').trim());
 
         const card = document.createElement('article');
         card.className = 'video-card';
@@ -1543,7 +1554,7 @@
         embed.innerHTML = `
           <iframe
             loading="lazy"
-            src="https://www.youtube.com/embed/${videoId}?playsinline=1&rel=0&modestbranding=1"
+            src="https://www.youtube.com/embed/${vid}?playsinline=1&rel=0&modestbranding=1"
             title="${title.replace(/"/g, '&quot;')}"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -1554,12 +1565,16 @@
         card.appendChild(h3);
         card.appendChild(embed);
         grid.appendChild(card);
-      });
+        count += 1;
+      }
 
-      statusEl.textContent = `Showing ${grid.children.length} videos from the playlist.`;
+      statusEl.textContent = count
+        ? `Showing ${count} videos from the playlist.`
+        : 'No embeddable videos found (they may be private/deleted).';
     } catch (e) {
       console.error(e);
-      statusEl.textContent = 'Could not load the playlist video list (RSS fetch blocked). The playlist player above still works.';
+      statusEl.textContent =
+        'Could not load the playlist video list (RSS fetch blocked). The playlist player above still works.';
     }
   })();
 </script>

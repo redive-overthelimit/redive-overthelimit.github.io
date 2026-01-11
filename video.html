@@ -1467,51 +1467,67 @@
     </footer>
 
 <script>
-  // Mobile menu toggle (same ids as index.html)
-  (function(){
-    const t = document.getElementById('navToggle');
-    const sp = document.getElementById('navSp');
-    if (!t || !sp) return;
-    t.addEventListener('click', () => {
-      const open = sp.classList.toggle('is-open');
-      t.classList.toggle('is-open', open);
-      t.setAttribute('aria-expanded', open ? 'true' : 'false');
+  // ---- Mobile menu toggle (same ids as index.html) ----
+  (function () {
+    const btn = document.getElementById('menuToggle');
+    const nav = document.getElementById('headerNav');
+    if (!btn || !nav) return;
+
+    btn.addEventListener('click', () => {
+      nav.classList.toggle('open');
+      btn.setAttribute('aria-expanded', nav.classList.contains('open') ? 'true' : 'false');
     });
   })();
 
-
-  
-  // Per-video titles from playlist (best-effort).
-  // Works without API keys by reading the playlist RSS feed.
-  // NOTE: Some browsers/environments may block cross-origin RSS fetch. If blocked, we keep the playlist player only.
-  (async function(){
-    const PLAYLIST_ID = 'PL66jSlgB0ywUX6ovlUw4J07o0oJyR196g'; // <-- set this
+  // ---- Render ALL videos (B plan: one iframe per video) ----
+  (async function () {
+    const PLAYLIST_ID = "PL66jSlgB0ywUX6ovlUw4J07o0oJyR196g";
     const statusEl = document.getElementById('videoListStatus');
     const grid = document.getElementById('videoGrid');
+
     if (!statusEl || !grid) return;
 
-    if (!PLAYLIST_ID || PLAYLIST_ID === 'PL66jSlgB0ywUX6ovlUw4J07o0oJyR196g') {
-      statusEl.textContent = 'Playlist loaded: (PL66jSlgB0ywUX6ovlUw4J07o0oJyR196g).';
-      return;
-    }
+    // NOTE: Direct fetch from youtube.com is often blocked by CORS on static sites.
+    // We use a public, read-only proxy to fetch the playlist RSS safely.
+    const rssDirect = `https://www.youtube.com/feeds/videos.xml?playlist_id=${encodeURIComponent(PLAYLIST_ID)}`;
+    const rssViaProxy = `https://r.jina.ai/http://www.youtube.com/feeds/videos.xml?playlist_id=${encodeURIComponent(PLAYLIST_ID)}`;
 
-    const feedUrl = `https://www.youtube.com/feeds/videos.xml?playlist_id=${encodeURIComponent(PLAYLIST_ID)}`;
+    const fetchText = async (url) => {
+      const res = await fetch(url, { method: 'GET' });
+      if (!res.ok) throw new Error(`Fetch failed: ${res.status}`);
+      return await res.text();
+    };
 
     try {
-      const res = await fetch(feedUrl, { method: 'GET' });
-      if (!res.ok) throw new Error('RSS fetch failed');
-      const text = await res.text();
-      const xml = new DOMParser().parseFromString(text, 'text/xml');
+      statusEl.textContent = 'Loading videos…';
+
+      // Try proxy first (best for GitHub Pages); fallback to direct
+      let xmlText;
+      try {
+        xmlText = await fetchText(rssViaProxy);
+      } catch (e) {
+        xmlText = await fetchText(rssDirect);
+      }
+
+      // Proxy may wrap content; try to locate the XML root
+      const xmlStart = xmlText.indexOf('<?xml');
+      if (xmlStart !== -1) xmlText = xmlText.slice(xmlStart);
+
+      const xml = new DOMParser().parseFromString(xmlText, 'text/xml');
       const entries = Array.from(xml.getElementsByTagName('entry'));
+
       if (!entries.length) {
         statusEl.textContent = 'No videos found in this playlist yet.';
         return;
       }
 
-      const max = 30; // keep page light; increase if needed
-      entries.slice(0, max).forEach((entry) => {
+      // Clear existing grid
+      grid.innerHTML = '';
+
+      entries.forEach((entry) => {
         const titleEl = entry.getElementsByTagName('title')[0];
         const vidEl = entry.getElementsByTagName('yt:videoId')[0];
+
         const title = titleEl ? titleEl.textContent : 'Video';
         const videoId = vidEl ? vidEl.textContent : null;
         if (!videoId) return;
@@ -1524,16 +1540,26 @@
 
         const embed = document.createElement('div');
         embed.className = 'embed';
-        embed.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}" title="${title.replace(/"/g,'&quot;')}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="origin-when-cross-origin" allowfullscreen></iframe>`;
+        embed.innerHTML = `
+          <iframe
+            loading="lazy"
+            src="https://www.youtube.com/embed/${videoId}?playsinline=1&rel=0&modestbranding=1"
+            title="${title.replace(/"/g, '&quot;')}"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="origin-when-cross-origin"
+            allowfullscreen></iframe>
+        `;
 
         card.appendChild(h3);
         card.appendChild(embed);
         grid.appendChild(card);
       });
 
-      statusEl.textContent = 'Showing latest videos from the playlist.';
+      statusEl.textContent = `Showing ${grid.children.length} videos from the playlist.`;
     } catch (e) {
-      statusEl.textContent = 'Could not load per-video titles (RSS blocked). You can still watch via the playlist player above.';
+      console.error(e);
+      statusEl.textContent = 'Could not load the playlist video list (RSS fetch blocked). The playlist player above still works.';
     }
   })();
 </script>
